@@ -57,3 +57,4 @@ def getStaff():
     staffs=Staff.query.all()
     return jsonify(staffs)
 
+# are ya winning son
