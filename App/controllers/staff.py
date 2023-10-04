@@ -42,3 +42,17 @@ def addReview():
     create_review(data['studentID'], data['rating'], data['review'])
     return message="Review Submitted"
     
+@staff_controller.route('/logon')
+def logon(username, password):
+    staff=Staff.get_staff_username(username)
+    if staff:
+        if staff.password==password:
+            return message="Logged in"
+    return None
+
+
+@staff_controller.route('/view_all', method='GET')
+@login_required
+def getStaff():
+    staffs=Staff.query.all()
+    return jsonify(staffs)
