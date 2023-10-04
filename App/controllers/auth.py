@@ -1,18 +1,22 @@
+#the purpose of this file is to grant the authorization token to users trying to login
+
 from flask_login import login_user, login_manager, logout_user, LoginManager
 from flask_jwt_extended import create_access_token, jwt_required, JWTManager
 
-from App.models import User
+from App.models import Staff
 
 def jwt_authenticate(username, password):
-  user = User.query.filter_by(username=username).first()
-  if user and user.check_password(password):
+  staff = Staff.query.filter_by(username=username).first()
+  if staff and staff.check_password(password):
     return create_access_token(identity=username)
   return None
 
+
+
 def login(username, password):
-    user = User.query.filter_by(username=username).first()
-    if user and user.check_password(password):
-        return user
+    staff = Staff.query.filter_by(username=username).first()
+    if staff and staff.check_password(password):
+        return staff
     return None
 
 def setup_flask_login(app):
