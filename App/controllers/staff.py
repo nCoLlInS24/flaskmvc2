@@ -1,6 +1,12 @@
+from flask import Blueprint, request
 from App.models import Staff
 from App.models import User
 from App.db import db
+
+
+staff_view = Blueprint('staff_views', __name__, template_folder='../templates')
+
+
 
 def create_staff(username,password):
     newStaff=Staff(username,password)
@@ -31,30 +37,15 @@ def update_staff_password(id,password):
     return None
 
 def search_student(studid):
-    return get_user(studid)
+    return User.get_user(studid)
 
 def search_student_by_name(username):
-    return get_user_by_username(username)
+    return User.get_user_by_username(username)
 
 def addReview():
-    
     data=request.json()
-    create_review(data['studentID'], data['rating'], data['review'])
-    return message="Review Submitted"
+    User.create_review(data['studentID'], data['rating'], data['review'])
+    return 
     
-@staff_controller.route('/logon')
-def logon(username, password):
-    staff=Staff.get_staff_username(username)
-    if staff:
-        if staff.password==password:
-            return message="Logged in"
-    return None
 
 
-@staff_controller.route('/view_all', method='GET')
-@login_required
-def getStaff():
-    staffs=Staff.query.all()
-    return jsonify(staffs)
-
-# are ya winning son
