@@ -1,7 +1,7 @@
 from App.models import Student
 from App.database import db
 
-def create_user(id,fname,lname):
+def create_student(id,fname,lname):
     newstudent = Student(id=id, firstname=fname,lastname=lname)
     db.session.add(newstudent)
     db.session.commit()

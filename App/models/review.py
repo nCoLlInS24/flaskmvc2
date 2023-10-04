@@ -9,31 +9,34 @@ class Review(db.Model, UserMixin):
     staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=False) #set userid as a foreign key to user.id 
     rating = db.Column(db.Integer,nullable=True)
     isPositive=db.Column(db.Boolean,nullable=False)#1 for if it is positive 0 if negative
-    review = db.Column(db.String(200),nullable=True)
+    text = db.Column(db.String(200),nullable=True)
 
 
 
-    def __init__(self,studentID, rating, review):
+    def __init__(self,staff_id,studentID, rating,ispos, review):
+        self.id=id
+        self.staff_id=staff_id
         self.studentID = studentID
-        self.rating=rating
-        self.review=review
+        self.rating=1
+        self.isPositive=ispos
+        self.text=text
 
 
     def get_json(self):
         return{
             'id': self.id,
             'rating':self.rating,
-            'review':self.review
+            'review':self.tect
         }
 
     def set_rating(self, rating):
         self.rating = rating
 
     def set_review(self, review):
-        self.review = review
+        self.text = review
 
-    def create_review(studid, rating, comment):
-        review = Review(studid,rating,comment)
+    def create_review(student_id, rating, comment):
+        review = Review(student_id,rating,comment)
         db.session.add(review)
         db.session.commit()
         return

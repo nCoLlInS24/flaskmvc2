@@ -12,12 +12,7 @@ class Staff(db.Model, UserMixin):
     def __init__(self, username, password, review):
         self.username = username
         self.set_password(password)
-        self.review=review
-
-
-
-    
-        
+        self.review=review        
 
     def get_json(self):
         return{

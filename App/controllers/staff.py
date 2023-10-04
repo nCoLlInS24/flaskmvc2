@@ -37,7 +37,24 @@ def search_student_by_name(username):
     return get_user_by_username(username)
 
 def addReview():
+    
     data=request.json()
     create_review(data['studentID'], data['rating'], data['review'])
-    return 
+    return message="Review Submitted"
     
+@staff_controller.route('/logon')
+def logon(username, password):
+    staff=Staff.get_staff_username(username)
+    if staff:
+        if staff.password==password:
+            return message="Logged in"
+    return None
+
+
+@staff_controller.route('/view_all', method='GET')
+@login_required
+def getStaff():
+    staffs=Staff.query.all()
+    return jsonify(staffs)
+
+# are ya winning son
