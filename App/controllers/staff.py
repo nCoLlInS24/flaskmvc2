@@ -37,7 +37,8 @@ def search_student_by_name(username):
     return get_user_by_username(username)
 
 def addReview():
+    
     data=request.json()
     create_review(data['studentID'], data['rating'], data['review'])
-    return 
+    return message="Review Submitted"
     
