@@ -1,4 +1,4 @@
-# from App.models import Review
+# from App.models import ReviewList
 # from App.database import db
 
 # def create_user(username, password):
@@ -31,4 +31,3 @@
 #         return db.session.commit()
 #     return None
     
-

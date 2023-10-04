@@ -1,4 +1,5 @@
 import click, pytest, sys
+from App.models import db, Staff,Review,Student,ReviewList
 from flask import Flask
 from flask.cli import with_appcontext, AppGroup
 

@@ -2,27 +2,24 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import UserMixin
 from App.database import db
 
-class Staff(db.Model, UserMixin):
+class Student(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username =  db.Column(db.String, nullable=False, unique=True)
-    password = db.Column(db.String(120), nullable=False)
-    review = db.relationship('Review', backref='user', lazy=True, cascade="all, delete-orphan")
-
-
-    def __init__(self, username, password, review):
-        self.username = username
-        self.set_password(password)
-        self.review=review
+    firstname=db.Column(db.String,nullable=fale)
+    lastname=db.Column(db.String,nullable=false)
+    review = db.relationship('Review', backref='student', lazy=True, cascade="all, delete-orphan")
 
 
 
-    
-        
+    def __init__(self,id,firstname,lastname):
+        self.id=id
+        self.firstname=firstname
+        self.lastname=lastname
 
     def get_json(self):
         return{
             'id': self.id,
-            'username': self.username
+            'firstname':self.firstname,
+            'lastname':self.lastname
         }
 
     def set_password(self, password):

@@ -3,13 +3,10 @@ from flask_login import UserMixin
 from App.database import db
 
 
-class Review(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    student_id = db.Column(db.Integer, db.ForeignKey('student.id'), nullable=False) #set userid as a foreign key to user.id 
-    staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=False) #set userid as a foreign key to user.id 
-    rating = db.Column(db.Integer,nullable=True)
-    isPositive=db.Column(db.Boolean,nullable=False)#1 for if it is positive 0 if negative
-    review = db.Column(db.String(200),nullable=True)
+class ReviewList(db.Model, UserMixin):
+    review_id=db.Column(db.Integer, db.ForeignKey('review.id'), nullable=False)
+    student_id = db.Column(db.Integer, db.ForeignKey('student.id'), nullable=False)
+
 
 
 
