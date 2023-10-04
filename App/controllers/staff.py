@@ -56,3 +56,4 @@ def logon(username, password):
 def getStaff():
     staffs=Staff.query.all()
     return jsonify(staffs)
+
