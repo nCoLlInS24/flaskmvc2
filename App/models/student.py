@@ -4,8 +4,8 @@ from App.database import db
 
 class Student(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    firstname=db.Column(db.String,nullable=fale)
-    lastname=db.Column(db.String,nullable=false)
+    firstname=db.Column(db.String,nullable=False)
+    lastname=db.Column(db.String,nullable=False)
     review = db.relationship('Review', backref='student', lazy=True, cascade="all, delete-orphan")
 
 

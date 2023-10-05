@@ -4,8 +4,9 @@ from App.database import db
 
 
 class ReviewList(db.Model, UserMixin):
-    review_id=db.Column(db.Integer, db.ForeignKey('review.id'), nullable=False)
-    student_id = db.Column(db.Integer, db.ForeignKey('student.id'), nullable=False)
+    id= db.Column(db.Integer, primary_key=True)
+    review_id=db.Column(db.Integer, db.ForeignKey('Review.id'), nullable=False)
+    student_id = db.Column(db.Integer, db.ForeignKey('Student.id'), nullable=False)
 
 
 
