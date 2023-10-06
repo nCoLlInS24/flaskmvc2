@@ -45,6 +45,7 @@ def search_student_by_name(username):
 def upVote(review):
     #in this case we pass the review instance itself (just like with self)
     review.rating+=1
+    Student.edit_karma(review)
     return review
 
 def downVote(review):

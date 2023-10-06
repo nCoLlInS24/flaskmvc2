@@ -6,20 +6,23 @@ class Student(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     firstname=db.Column(db.String,nullable=False)
     lastname=db.Column(db.String,nullable=False)
+    karma=db.Column(db.Integer, nullable=True)
     review = db.relationship('Review', backref='student', lazy=True, cascade="all, delete-orphan")
-
+    
 
 
     def __init__(self,id,firstname,lastname):
         self.id=id
         self.firstname=firstname
         self.lastname=lastname
+        self.karma=1
 
     def get_json(self):
         return{
             'id': self.id,
             'firstname':self.firstname,
-            'lastname':self.lastname
+            'lastname':self.lastname,
+            'karma':self.karma
         }
 
     # def set_password(self, password):

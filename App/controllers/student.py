@@ -4,12 +4,11 @@ from App.database import db
 def create_student(id,fname,lname):
     newstudent = Student(id=id, firstname=fname,lastname=lname)
     db.session.add(newstudent)
-    # ReviewList.create_reviewList(student,review) do this when a review 
     db.session.commit()
     return newstudent
 
-def get_user(id):
-    return User.query.get(id)
+def get_student(id):
+    return Student.query.get(id)
 
 def get_all_users():
     return User.query.all()
@@ -21,6 +20,13 @@ def get_all_users_json():
     users = [user.get_json() for user in users]
     return users
 
+def edit_karma(review):
+    student=Student.query.get(review.student_id)
+    if(review.isPositive==0):#if the review is negative
+        student.karma-=1
+    else:
+        student.karma+=1
+    return None
 
 
 # def update_user(id, username):
