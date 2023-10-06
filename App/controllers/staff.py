@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from App.models import Staff
-from App.model import Review
+from App.models import Review
 from App.models import User
 from App.db import db
 
