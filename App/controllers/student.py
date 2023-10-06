@@ -13,11 +13,11 @@ def get_student(id):
 def get_all_users():
     return User.query.all()
 
-def get_all_users_json():
-    users = User.query.all()
-    if not users:
+def get_all_student_json():
+    students = Student.query.all()
+    if not students:
         return []
-    users = [user.get_json() for user in users]
+    students = [student.get_json() for student in students]
     return users
 
 def edit_karma(review):
