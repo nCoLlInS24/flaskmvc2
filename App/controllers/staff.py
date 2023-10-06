@@ -1,11 +1,11 @@
 from flask import Blueprint, request
 from App.models import Staff
+from App.model import Review
 from App.models import User
 from App.db import db
 
 
 staff_view = Blueprint('staff_views', __name__, template_folder='../templates')
-
 
 
 def create_staff(username,password):
@@ -42,10 +42,21 @@ def search_student(studid):
 def search_student_by_name(username):
     return User.get_user_by_username(username)
 
-def addReview():
+def upVote(review):
+    #in this case we pass the review instance itself (just like with self)
+    review.rating+=1
+    return review
+
+def downVote(review):
+    review.rating+=1
+    return review #idk why returning review does not work here
+    
+    
+
+def addReview(self):
     data=request.json()
-    User.create_review(data['studentID'], data['rating'], data['review'])
-    return 
+    review.create_review(data[self.id],data['studentID'],data['rating'],data['isPositive'], data['review'])
+    return review
     
 
 
