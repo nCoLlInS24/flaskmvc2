@@ -10,15 +10,15 @@ def create_student(id,fname,lname):
 def get_student(id):
     return Student.query.get(id)
 
-def get_all_users():
-    return User.query.all()
+# def get_all_users():
+#     return User.query.all()
 
-def get_all_student_json():
+def get_all_students_json():
     students = Student.query.all()
     if not students:
         return []
     students = [student.get_json() for student in students]
-    return users
+    return students
 
 def edit_karma(review):
     student=Student.query.get(review.student_id)

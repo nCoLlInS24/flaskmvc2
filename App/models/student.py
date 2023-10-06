@@ -6,7 +6,7 @@ class Student(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     firstname=db.Column(db.String,nullable=False)
     lastname=db.Column(db.String,nullable=False)
-    karma=db.Column(db.Integer, nullable=True)
+    karma=db.Column(db.Integer, nullable=fault,Default=1)
     review = db.relationship('Review', backref='student', lazy=True, cascade="all, delete-orphan")
     
 
@@ -15,7 +15,6 @@ class Student(db.Model, UserMixin):
         self.id=id
         self.firstname=firstname
         self.lastname=lastname
-        self.karma=1
 
     def get_json(self):
         return{
