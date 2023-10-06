@@ -29,11 +29,11 @@ def edit_karma(review):
     return None
 
 
-# def update_user(id, username):
-#     user = get_user(id)
-#     if user:
-#         user.username = username
-#         db.session.add(user)
-#         return db.session.commit()
-#     return None
+def update_student(id, username):
+    student = get_student(id)
+    if student:
+        student.username = username
+        db.session.add(student)
+        return db.session.commit()
+    return None
     
