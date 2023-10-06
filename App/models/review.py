@@ -20,6 +20,7 @@ class Review(db.Model, UserMixin):
         self.rating=1
         self.isPositive=ispos
         self.text=text
+        
 
 
     def get_json(self):

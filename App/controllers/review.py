@@ -1,9 +1,11 @@
 from App.models import Review
+from App.models import ReviewList
 from App.database import db
 
 def create_review(student_id,staff_id,rating,isPositive,text):
     review = Review(student_id,staff_id,rating,isPositive,text)
     db.session.add(review)
+    ReviewList.add_review(review.id,student_id)
     db.session.commit()
     return review
 
@@ -16,6 +18,7 @@ def get_all_reviews(staff_id):#get all reviews for a specific staff
     if not reviews:#if no reviews then return empty string
         return[]
     reviews_of= [review.get_json() for review in reviews]
+
 
 # def get_all_users_json():
 #     users = User.query.all()

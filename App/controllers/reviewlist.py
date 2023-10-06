@@ -1,11 +1,15 @@
-# from App.models import ReviewList
-# from App.database import db
+#review list is supposed to show a list of reviews for a specific student
 
-# def create_user(username, password):
-#     newuser = User(username=username, password=password)
-#     db.session.add(newuser)
-#     db.session.commit()
-#     return newuser
+from App.models import ReviewList
+from App.models import Review
+from App.database import db
+
+
+def add_review(review_id,staff_id):
+    rlist = ReviewList(student.id,review.id)
+    db.session.add(rlist)
+    db.session.commit()
+    return rlist
 
 # def get_user_by_username(username):
 #     return User.query.filter_by(username=username).first()

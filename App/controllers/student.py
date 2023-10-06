@@ -4,6 +4,7 @@ from App.database import db
 def create_student(id,fname,lname):
     newstudent = Student(id=id, firstname=fname,lastname=lname)
     db.session.add(newstudent)
+    # ReviewList.create_reviewList(student,review) do this when a review 
     db.session.commit()
     return newstudent
 

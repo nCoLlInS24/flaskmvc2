@@ -9,12 +9,9 @@ class ReviewList(db.Model, UserMixin):
     student_id = db.Column(db.Integer, db.ForeignKey('Student.id'), nullable=False)
 
 
-
-
-    def __init__(self,studentID, rating, review):
-        self.studentID = studentID
-        self.rating=rating
-        self.review=review
+    def __init__(self,studentID, review_id):
+        self.student_id = studentID
+        self.review_id=review_id
 
 
     def get_json(self):
