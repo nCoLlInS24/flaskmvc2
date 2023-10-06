@@ -13,7 +13,7 @@ class Review(db.Model, UserMixin):
 
 
 
-    def __init__(self,staff_id,studentID, rating,ispos, review):
+    def __init__(self,staff_id,studentID, rating,ispos, text):
         self.id=id
         self.staff_id=staff_id
         self.studentID = studentID
@@ -23,10 +23,15 @@ class Review(db.Model, UserMixin):
 
 
     def get_json(self):
+        staff_name=Staff.get_staff(self.staff_id)
+
         return{
             'id': self.id,
+            'Staff member':staff_name.username,
             'rating':self.rating,
-            'review':self.tect
+            'review':self.text,
+            'Positive':self.isPositive,
+
         }
 
     def set_rating(self, rating):
