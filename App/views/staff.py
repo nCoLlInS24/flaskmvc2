@@ -21,6 +21,7 @@ def getStaffs():
  #   return get_staff(id)
 
 @staff_view.route('/getstaffByUsername/<username>')
+@login_required
 def getStaffByUsername(username):
     return get_staff_by_username(username)
 
@@ -46,6 +47,7 @@ def getstaff(id):
     return get_staff(id)
 
 @staff_view.route('/getstaffByUsername/<username>')
+@login_required
 def getStaffByUsername(username):
     return get_staff_by_username(username)
 
