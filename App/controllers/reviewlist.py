@@ -11,6 +11,15 @@ def add_review(review_id,staff_id):
     db.session.commit()
     return rlist
 
+def get_student_reviews(student_id):
+    reviews=Review.query.filter_by(student_id=student_id).all()
+    if not reviews:#if no reviews then return empty string
+        return[]
+    reviews_of= [review.get_json() for review in reviews]
+    return reviews_of
+
+
+
 # def get_user_by_username(username):
 #     return User.query.filter_by(username=username).first()
 

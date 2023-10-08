@@ -17,7 +17,9 @@ def get_all_reviews(staff_id):#get all reviews for a specific staff
     reviews=Review.query.filter_by(staffId=staff_id).all()
     if not reviews:#if no reviews then return empty string
         return[]
-    reviews_of= [review.get_json() for review in reviews]
+    else:
+        reviews_of= [review.get_json() for review in reviews]
+        return jsonify(reviews_of)
 
 
 # def get_all_users_json():

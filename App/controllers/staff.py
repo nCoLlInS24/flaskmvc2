@@ -54,8 +54,7 @@ def downVote(review):
     
     
 
-def addReview(self):
-    data=request.json()
+def addReview(data):
     review.create_review(data[self.id],data['studentID'],data['rating'],data['isPositive'], data['text'])
     return review
     

@@ -16,31 +16,44 @@ def getStaffs():
     return Staff.query.all()
 
 
-#@staff_view.route('/getStaff/<id>')
-#def getstaff(id):
- #   return get_staff(id)
+
+@staff_view.route('/signup',method=["POST"])
+@login_required
+def createStaff():
+    data=request.json()
+    staff=Staff.create_staff(data['username'],data['password']);
+    if(staff):
+        return jsonify({"Account Created"}),201
+    else:  
+        return jsonify({"Username already exists"}),400
+
+
 
 @staff_view.route('/getstaffByUsername/<username>')
 @login_required
 def getStaffByUsername(username):
     return get_staff_by_username(username)
 
-@staff_view.route('/createReview')
+@staff_view.route('/createReview',methods=["POST"])
 @login_required
 def createReview():
-    return addReview()
+    data=request.json()
+    review=addReview(data)
+    if(review):
+        return jsonify({"Review Posted"}), 201
+    else:
+        return jsonify({"Error"}),401
 
 
-
-@staff_view.route('/createReview')
-@login_required
-def createReview():
-    return addReview()
-
-@staff_view.route('/searchStudent')
+@staff_view.route('/searchStudent',methods=["GET"])
 @login_required
 def searchStudent(id):
-    return get_user(id)
+    student=Student.get_student(id)
+    if(student):
+        print(student.get_json())
+        return jsonify({"Student Found"}),201
+    else:
+        return jsonify({"Invalid Student Id Given"}),404
 
 @app.cli.command("getStaff")
 def getstaff(id):
