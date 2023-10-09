@@ -8,7 +8,7 @@ from App.models import Staff
 
 from.index import index_views
 
-staff_view = Blueprint('user_views', __name__, template_folder='../templates')
+reviewList_view = Blueprint('reviewList_views', __name__, template_folder='../templates')
 
 
 

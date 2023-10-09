@@ -8,7 +8,7 @@ from App.models import Staff
 
 from.index import index_views
 
-staff_view = Blueprint('user_views', __name__, template_folder='../templates')
+staff_view = Blueprint('staff_views', __name__, template_folder='../templates')
 
 
 @staff_view.route('/getStaffs',method=['GET'])
@@ -55,9 +55,9 @@ def searchStudent(id):
     else:
         return jsonify({"Invalid Student Id Given"}),404
 
-@app.cli.command("getStaff")
-def getstaff(id):
-    return get_staff(id)
+# @app.cli.command("getStaff")
+# def getstaff(id):
+#     return get_staff(id)
 
 @staff_view.route('/getstaffByUsername/<username>')
 @login_required

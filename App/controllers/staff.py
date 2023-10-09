@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from App.models import Staff
 from App.models import Review
 from App.models import User
-from App.db import db
+from App.database import db
 
 
 staff_view = Blueprint('staff_views', __name__, template_folder='../templates')
