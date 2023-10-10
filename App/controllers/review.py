@@ -1,6 +1,7 @@
 from App.models import Review
 from App.models import ReviewList
 from App.database import db
+from flask import jsonify
 
 def create_review(student_id,staff_id,rating,isPositive,text):
     review = Review(student_id,staff_id,rating,isPositive,text)
@@ -10,8 +11,8 @@ def create_review(student_id,staff_id,rating,isPositive,text):
     return review
 
 
-def get_review_by_id(id):
-    return Review.query.get(id)
+def get_review_by_id(new_id):
+    return Review.query.get(new_id)
 
 def get_all_reviews(staff_id):#get all reviews for a specific staff
     reviews=Review.query.filter_by(staffId=staff_id).all()
