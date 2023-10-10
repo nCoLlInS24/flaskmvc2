@@ -57,10 +57,6 @@ def searchStudent(id):
 # def getstaff(id):
 #     return get_staff(id)
 
-@staff_view.route('/getstaffByUsername/<username>',methods={'GET'})
-@login_required
-def getStaffByUsername(username):
-    return get_staff_by_username(username)
 
 @staff_view.route('/searchStudentName/<name>',methods=['GET'])
 @login_required
