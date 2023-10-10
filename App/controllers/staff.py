@@ -1,11 +1,12 @@
-from flask import Blueprint, request
+# from flask import Blueprint, request
 from App.models import Staff
 from App.models import Review
 from App.models import User
-from App.db import db
+from App.models import Student
+from App.database import db
 
 
-staff_view = Blueprint('staff_views', __name__, template_folder='../templates')
+# staff_view = Blueprint('staff_views', __name__, template_folder='../templates')
 
 
 def create_staff(username,password):
@@ -14,22 +15,22 @@ def create_staff(username,password):
     db.session.commit()
     return newStaff
 
-def get_staff(id):
-    return Staff.query.get(id)
+def get_staff(new_id):
+    return Staff.query.get(new_id)
 
 def get_staff_username(username):
     return Staff.query.filter_by(username)
 
-def update_staff_username(id,username):
-    staff=get_staff(id)
+def update_staff_username(new_id,username):
+    staff=get_staff(new_id)
     if staff:
         staff.username=username
         db.session.add(staff)
         return db.session.commit(staff)
     return None
 
-def update_staff_password(id,password):
-    staff=get_staff(id)
+def update_staff_passwordnew_(new_id,password):
+    staff=get_staff(new_id)
     if staff:
         staff.password=password
         db.session.add(staff)
@@ -55,8 +56,8 @@ def downVote(review):
     
 
 def addReview(data):
-    review.create_review(data[self.id],data['studentID'],data['rating'],data['isPositive'], data['text'])
-    return review
+    Review.create_review(data[Staff.id],data['studentID'],data['rating'],data['isPositive'], data['text'])
+    return Review
     
 
 

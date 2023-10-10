@@ -9,10 +9,10 @@ class Staff(db.Model, UserMixin):
     review = db.relationship('Review', backref='user', lazy=True, cascade="all, delete-orphan")
 
 
-    def __init__(self, username, password, review):
+    def __init__(self, username, password):
         self.username = username
         self.set_password(password)
-        self.review=review        
+        # self.review=review        
 
     def get_json(self):
         return{
