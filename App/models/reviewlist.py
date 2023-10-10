@@ -1,6 +1,7 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import UserMixin
 from App.database import db
+from App.models import Review
 
 
 class ReviewList(db.Model, UserMixin):
@@ -27,7 +28,7 @@ class ReviewList(db.Model, UserMixin):
     def set_review(self, review):
         self.review = review
 
-    def create_review(studid, rating, comment):
+    def create_review(self, studid, rating, comment):
         review = Review(studid,rating,comment)
         db.session.add(review)
         db.session.commit()
