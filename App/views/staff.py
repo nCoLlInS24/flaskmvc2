@@ -10,14 +10,12 @@ from.index import index_views
 
 staff_view = Blueprint('staff_view', __name__, template_folder='../templates')
 
-
-@staff_view.route('/getStaffs',method=['GET'])
+@staff_view.route('/getStaffs',methods=['GET'])
 def getStaffs():
-    return Staff.query.all()
+    staffs=Staff.query.all()
+    return staffs
 
-
-
-@staff_view.route('/signup',method=["POST"])
+@staff_view.route('/signup',methods=['POST'])
 @login_required
 def createStaff():
     data=request.json()
@@ -29,12 +27,12 @@ def createStaff():
 
 
 
-@staff_view.route('/getstaffByUsername/<username>')
+@staff_view.route('/getstaffByUsername/<username>',methods=['GET'])
 @login_required
 def getStaffByUsername(username):
     return get_staff_by_username(username)
 
-@staff_view.route('/createReview',methods=["POST"])
+@staff_view.route('/createReview',methods=['POST'])
 @login_required
 def createReview():
     data=request.json()
@@ -59,12 +57,12 @@ def searchStudent(id):
 # def getstaff(id):
 #     return get_staff(id)
 
-@staff_view.route('/getstaffByUsername/<username>')
+@staff_view.route('/getstaffByUsername/<username>',methods={'GET'})
 @login_required
 def getStaffByUsername(username):
     return get_staff_by_username(username)
 
-@staff_view.route('/searchStudentName/<name>')
+@staff_view.route('/searchStudentName/<name>',methods=['GET'])
 @login_required
 def getStudentName(name):
     return User.query.filter_by(name)
