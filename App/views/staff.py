@@ -8,7 +8,7 @@ from App.models import Staff
 
 from.index import index_views
 
-staff_view = Blueprint('staff_views', __name__, template_folder='../templates')
+staff_view = Blueprint('staff_view', __name__, template_folder='../templates')
 
 
 @staff_view.route('/getStaffs',method=['GET'])
