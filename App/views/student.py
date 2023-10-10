@@ -6,7 +6,7 @@ from flask.cli import with_appcontext, AppGroup
 
 from App.models import Staff
 
-from.index import index_views
+from .index import index_views
 
 student_view = Blueprint('student_views', __name__, template_folder='../templates')
 
