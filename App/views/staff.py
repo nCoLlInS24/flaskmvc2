@@ -22,7 +22,7 @@ def createStaff():
     if(staff):
         return jsonify({"Account Created"}),201
     else:  
-        return jsonify({"Username already exists"}),400
+        return jsonify({"Username already exists"}),401
 
 
 
