@@ -5,9 +5,7 @@ from App.models import User
 from App.models import Student
 from App.database import db
 
-
 # staff_view = Blueprint('staff_views', __name__, template_folder='../templates')
-
 
 def create_staff(username,password):
     newStaff=Staff(username,password)
