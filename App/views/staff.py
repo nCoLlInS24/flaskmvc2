@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 
 from flask.cli import with_appcontext, AppGroup
 
-from App.models import Staff
+from App.models import Staff, Student
 
 from.index import index_views
 

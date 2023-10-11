@@ -23,7 +23,7 @@ def get_staff_username(username):
 
 def update_staff_username(new_id,username):
     staff=get_staff(new_id)
-    if staff:
+    if (staff):
         staff.username=username
         db.session.add(staff)
         return db.session.commit(staff)
