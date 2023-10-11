@@ -19,7 +19,6 @@ def get_student_reviews(student_id):
     return reviews_of
 
 
-
 # def get_user_by_username(username):
 #     return User.query.filter_by(username=username).first()
 

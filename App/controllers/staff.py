@@ -29,7 +29,7 @@ def update_staff_username(new_id,username):
         return db.session.commit(staff)
     return None
 
-def update_staff_passwordnew_(new_id,password):
+def update_staff_password_(new_id,password):
     staff=get_staff(new_id)
     if staff:
         staff.password=password
