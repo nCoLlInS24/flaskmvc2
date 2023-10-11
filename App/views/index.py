@@ -22,11 +22,11 @@ def health_check():
 
     #asd
 
-@index_views.route("/getStaff",methods=['GET'])
-def getstaff(id):
-    staff=get_staff(id);
+@index_views.route("/getStaffs",methods=['GET'])
+def getstaff():
+    
 
     if(staff):
-        return jsonify(staff.get_json())
+        return jsonify(Staff.get_all_staff_json()),200
     else:
         return jsonify({"Staff member not found"}),400
