@@ -11,7 +11,7 @@ class Review(db.Model, UserMixin):
     rating = db.Column(db.Integer,nullable=True)
     isPositive=db.Column(db.Boolean,nullable=False)#1 for if it is positive 0 if negative
     text = db.Column(db.String(200),nullable=True)
-
+    # notifications = db.relationship('Notification', backref='notifications', lazy=True, cascade="all, delete-orphan")
 
 
     def __init__(self,staff_id,studentID, rating,ispos, text):
