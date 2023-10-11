@@ -6,6 +6,8 @@ from flask.cli import with_appcontext, AppGroup
 
 from App.models import Staff, Student
 
+from App.controllers import addReview, get_staff_username
+
 from.index import index_views
 
 staff_view = Blueprint('staff_view', __name__, template_folder='../templates')
@@ -26,7 +28,7 @@ def createStaff():
 @staff_view.route('/getstaffByUsername/<username>',methods=['GET'])
 @login_required
 def getStaffByUsername(username):
-    return get_staff_by_username(username)
+    return get_staff_username(username)
 
 @staff_view.route('/createReview',methods=['POST'])
 @login_required
@@ -62,4 +64,4 @@ def getstaff(id):
 @staff_view.route('/searchStudentName/<name>',methods=['GET'])
 @login_required
 def getStudentName(name):
-    return User.query.filter_by(name)
+    return Student.query.filter_by(name)
