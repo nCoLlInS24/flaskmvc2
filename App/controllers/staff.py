@@ -54,7 +54,6 @@ def downVote(review):
     return review #idk why returning review does not work here
     
     
-
 def addReview(data):
     Review.create_review(data[Staff.id],data['studentID'],data['rating'],data['isPositive'], data['text'])
     return Review
