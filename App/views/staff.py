@@ -16,7 +16,6 @@ def getStaffs():
     return staffs
 
 @staff_view.route('/signup',methods=['POST'])
-@login_required
 def createStaff():
     data=request.json()
     staff=Staff.create_staff(data['username'],data['password']);
