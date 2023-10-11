@@ -10,10 +10,7 @@ from.index import index_views
 
 staff_view = Blueprint('staff_view', __name__, template_folder='../templates')
 
-@staff_view.route('/getStaffs',methods=['GET'])
-def getStaffs():
-    staffs=Staff.query.all()
-    return staffs
+
 
 @staff_view.route('/signup',methods=['POST'])
 def createStaff():
@@ -52,9 +49,14 @@ def searchStudent(id):
     else:
         return jsonify({"Invalid Student Id Given"}),404
 
-# @app.cli.command("getStaff")
-# def getstaff(id):
-#     return get_staff(id)
+@staff_view.route("/getStaff",methods=['GET'])
+def getstaff(id):
+    staff=get_staff(id);
+
+    if(staff):
+        return jsonify(staff.get_json())
+    else:
+        return jsonify({"Staff memeber not found"}),400
 
 
 @staff_view.route('/searchStudentName/<name>',methods=['GET'])
