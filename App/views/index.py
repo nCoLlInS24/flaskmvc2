@@ -1,6 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify
 from App.models import db
 from App.controllers import create_user
+from App.controllers import Staff, Student
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
@@ -20,3 +21,12 @@ def health_check():
     return jsonify({'status':'healthy'})
 
     #asd
+
+@index_views.route("/getStaff",methods=['GET'])
+def getstaff(id):
+    staff=get_staff(id);
+
+    if(staff):
+        return jsonify(staff.get_json())
+    else:
+        return jsonify({"Staff member not found"}),400

@@ -51,14 +51,6 @@ def searchStudent(id):
     else:
         return jsonify({"Invalid Student Id Given"}),404
 
-@staff_view.route("/getStaff",methods=['GET'])
-def getstaff(id):
-    staff=get_staff(id);
-
-    if(staff):
-        return jsonify(staff.get_json())
-    else:
-        return jsonify({"Staff memeber not found"}),400
 
 
 @staff_view.route('/searchStudentName/<name>',methods=['GET'])
