@@ -24,9 +24,7 @@ def health_check():
 
 @index_views.route("/getStaffs",methods=['GET'])
 def getstaff():
-    
-
-    if(staff):
+    # if(staff):
         return jsonify(Staff.get_all_staff_json()),200
-    else:
+    # else:
         return jsonify({"Staff member not found"}),400
