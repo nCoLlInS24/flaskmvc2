@@ -1,4 +1,5 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify
+from sqlalchemy.exc import SQLAlchemyError
 from App.models import db
 from App.controllers import create_user
 from App.controllers import Staff, Student
@@ -25,8 +26,11 @@ def health_check():
 @index_views.route("/getStaffs", methods=['GET'])
 def getstaff():
     # if(staff):
-    staffs=Staff.query.all()
-    return jsonify({'status':'healthy'})
+    try:
+        staffs=Staff.query.all()
+        return jsonify({'status':'healthy'})
+    except SQLAlchemyError as e:
+        return jsonify({"error": "Database error", "details": str(e)}), 500
     # return render_template('check.html', staffs=staffs)
     # else:
         # return jsonify({"Staff member not found"}),400
