@@ -26,6 +26,6 @@ def health_check():
 def getstaff():
     # if(staff):
          staffs=Staff.query.all()
-        return render_template('check.html', staffs=todos)
+        return render_template('check.html', staffs=staffs)
     # else:
         # return jsonify({"Staff member not found"}),400
