@@ -25,7 +25,7 @@ def health_check():
 @index_views.route("/getStaffs",methods=['GET'])
 def getstaff():
     # if(staff):
-         staffs=Staff.query.all()
-        return render_template('check.html', staffs=staffs)
+    staffs=Staff.query.all()
+    return render_template('check.html', staffs=staffs)
     # else:
         # return jsonify({"Staff member not found"}),400
