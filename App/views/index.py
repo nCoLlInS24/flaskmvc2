@@ -27,7 +27,7 @@ def health_check():
 def getstaff():
     # if(staff):
     try:
-        # staffs=Staff.get_all_staff()
+        staffs=Staff.get_all_staff()
         return jsonify({'status':'healthy'})
     except SQLAlchemyError as e:
         return jsonify({"error": "Database error", "details": str(e)}), 500
