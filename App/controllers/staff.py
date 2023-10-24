@@ -16,11 +16,8 @@ def create_staff(username,password):
 def get_staff(new_id):
     return Staff.query.get(new_id)
 
-def get_all_staff_json():
+def get_all_staff():
     staffs = Staff.query.all()
-    if not staffs:
-        return []
-    staffs = [staff.get_json() for staff in staffs]
     return staffs
 
 def get_staff_username(username):
