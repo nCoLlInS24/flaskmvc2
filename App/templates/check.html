@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Flask MVC App{% endblock %}
+{% block page %}Flask MVC App{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+    <h1>Flask MVC</h1>
+    <ul class="collection " id="result">
+            {% for staff in staffs %}
+                 <li class="collection-item">
+                    <p>${staff.username}</p>
+                </li>
+            {% endfor %}
+      </ul>
+{% endblock %}
