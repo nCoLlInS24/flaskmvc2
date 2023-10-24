@@ -27,4 +27,4 @@ def getstaff():
     # if(staff):
         return jsonify(Staff.get_all_staff_json()),200
     # else:
-        return jsonify({"Staff member not found"}),400
+        # return jsonify({"Staff member not found"}),400
