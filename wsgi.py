@@ -1,4 +1,5 @@
 import click, pytest, sys
+from App.controllers.staff import get_staff
 from App.models import db, Staff,Review,Student,ReviewList
 from flask import Flask
 from flask.cli import with_appcontext, AppGroup
@@ -70,5 +71,40 @@ def user_tests_command(type):
     else:
         sys.exit(pytest.main(["-k", "App"]))
     
+
+@test.command("staff", help="Runs Staff Tests")
+@click.argument("type", default="unit")
+def staff_tests_command(type):
+    if type == "unit":
+        sys.exit(pytest.main(["-k", "StaffUnitTests"]))
+    else:
+        sys.exit(pytest.main(["-k", "App"]))
+
+
+app.cli.add_command(test)
+
+
+staff_test=AppGroup("staff",help='Tests Staff functions')
+
+@staff_test.command("create_staff", help='Test create Staff function')
+@click.argument("username", default="rob")
+@click.argument("password", default="robpass")
+def create_staff_test(username,password):
+    staff = create_staff(username, password)
+    assert staff.username == "rob"
+
+
+@staff_test.command("update", help='Test update Staff function')
+@click.argument("new_id",default=1)
+@click.argument("username",default="billy")
+def update_staff_username_test(new_id,username):
+    staff=get_staff(new_id)
+    if staff:
+        staff.username=username
+        db.session.add(staff)
+        db.session.commit()
+    assert staff.username=="billy"
+
+app.cli.add_command(staff_test)
 
 app.cli.add_command(test)

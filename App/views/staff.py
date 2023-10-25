@@ -3,10 +3,13 @@ from flask_jwt_extended import jwt_required, current_user as jwt_current_user
 from flask_login import current_user, login_required
 
 from flask.cli import with_appcontext, AppGroup
+from App.controllers.staff import create_staff
+from App.controllers.student import get_student
 
 from App.models import Staff, Student
 
 from App.controllers import addReview, get_staff_username
+from App.models.user import User
 
 from.index import index_views
 
@@ -34,26 +37,57 @@ def getStaffByUsername(username):
 @login_required
 def createReview():
     data=request.json()
-    review=addReview(data)
-    if(review):
-        return jsonify({"Review Posted"}), 201
-    else:
-        return jsonify({"Error"}),401
+    staff=create_staff(username=data['username'],password=data['password'])
+    if(staff):
+        message={"message":"Account Created","code":201}
+        return message
+    else:  
+        message={"message":"Username already exists","code":400}
+        return message
 
 
 @staff_view.route('/searchStudent',methods=["GET"])
 @login_required
 def searchStudent(id):
-    student=Student.get_student(id)
+    student=get_student(id=id)
+    
     if(student):
+        message={"message":"Student found","code":"200"}
         print(student.get_json())
-        return jsonify({"Student Found"}),201
+        return message
     else:
-        return jsonify({"Invalid Student Id Given"}),404
+        message={"message":"Student not found","code":"400"}
+        return message
+    return None
+    
 
 
 
 @staff_view.route('/searchStudentName/<name>',methods=['GET'])
-@login_required
+#@login_required
 def getStudentName(name):
-    return Student.query.filter_by(name)
+    user=User.query.filter_by(username=name).first()
+    if user:
+        return user.get_json()
+    return None
+
+@staff_view.route('/getStaffs',methods=['GET'])
+def getStaffs():
+    staffs=Staff.query.all()
+    if not staffs:
+        return []
+    staffs=[staff.get_json for staff in staffs]
+    return staffs
+
+@staff_view.route('/signup', methods=["POST"])
+def signupStaff():
+    data=request.json()
+    message=[]
+    staff=create_staff(data["usernaem"],data["password"]);
+    if(staff):
+        message={"message":"Account Created","code":201}
+        return message
+    else:  
+        message={"message":"Username already exists","code":400}
+        return message
+    return None

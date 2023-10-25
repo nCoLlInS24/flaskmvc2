@@ -8,47 +8,50 @@ from App.database import db
 # staff_view = Blueprint('staff_views', __name__, template_folder='../templates')
 
 def create_staff(username,password):
-    newStaff=Staff(username,password)
+    newStaff=Staff(username=username,password=password)
     db.session.add(newStaff)
     db.session.commit()
     return newStaff
 
 def get_staff(new_id):
-    return Staff.query.get(new_id)
+    return Staff.query.get(new_id=new_id)
 
 def get_all_staff():
     staffs = Staff.query.all()
     return staffs
 
 def get_staff_username(username):
-    return Staff.query.filter_by(username)
+    staff=Staff.query.filter_by(username=username).first()
+    if (staff):
+        return staff
+    return None
 
 def update_staff_username(new_id,username):
-    staff=get_staff(new_id)
+    staff=get_staff(new_id=new_id)
     if (staff):
         staff.username=username
         db.session.add(staff)
-        return db.session.commit(staff)
+        return db.session.commit()
     return None
 
 def update_staff_password_(new_id,password):
-    staff=get_staff(new_id)
+    staff=get_staff(new_id=new_id)
     if staff:
         staff.password=password
         db.session.add(staff)
-        return db.session.commit(staff)
+        return db.session.commit()
     return None
 
 def search_student(studid):
-    return User.get_user(studid)
+    return User.get_user(id=studid)
 
 def search_student_by_name(username):
-    return User.get_user_by_username(username)
+    return User.get_user_by_username(username=username)
 
 def upVote(review):
     #in this case we pass the review instance itself (just like with self)
     review.rating+=1
-    Student.edit_karma(review)
+    Student.edit_karma(review=review)
     return review
 
 def downVote(review):
